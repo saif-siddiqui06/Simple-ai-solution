@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+
+{% block title %}Sentiment Analysis - ML Projects{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Sentiment Analysis</h1>
+    <p class="lead">Analyze sentiment of the text</p>
+    <hr class="my-4">
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">Sentiment Analysis</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="text">Enter text:</label>
+                        <textarea class="form-control" name="text" rows="5" placeholder="Enter text for sentiment analysis..." required>{{ text }}</textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Analyze</button>
+                    </div>
+                </form>
+
+                {% if text %}
+                <hr>
+                <div class="mt-4">
+                    <h3 class="mb-3">Your Text:</h3>
+                    <p class="p-3 bg-light rounded">{{ text }}</p>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Sentiment:</h3>
+                            <p class="p-3 bg-light rounded">
+                                <strong>Positive:</strong> {{ sentiment.pos }}<br>
+                                <strong>Neutral:</strong> {{ sentiment.neu }}<br>
+                                <strong>Negative:</strong> {{ sentiment.neg }}<br>
+                                <strong>Compound:</strong> {{ sentiment.compound }}
+                            </p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="mb-3">Keywords:</h3>
+                            <ul class="list-group">
+                                {% for keyword, count in keywords %}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{ keyword }}
+                                    <span class="badge badge-primary badge-pill">{{ count }}</span>
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <canvas id="sentimentChart"></canvas>
+                        </div>
+                        <div class="col-md-6">
+                            <div id="wordCloud"></div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+{% if sentiment and keywords %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3@5"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-cloud@1.2.5/build/d3.layout.cloud.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Sentiment Distribution Chart
+        var ctxSentiment = document.getElementById('sentimentChart').getContext('2d');
+        var myChartSentiment = new Chart(ctxSentiment, {
+            type: 'pie',
+            data: {
+                labels: ['Positive', 'Neutral', 'Negative'],
+                datasets: [{
+                    label: 'Sentiment Scores',
+                    data: [
+                        {{ sentiment.pos }},
+                        {{ sentiment.neu }},
+                        {{ sentiment.neg }}
+                    ],
+                    backgroundColor: [
+                        'rgba(75, 192, 192, 0.6)',
+                        'rgba(54, 162, 235, 0.6)',
+                        'rgba(255, 99, 132, 0.6)'
+                    ],
+                    borderColor: [
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 99, 132, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                legend: {
+                    position: 'right'
+                },
+                animation: {
+                    animateScale: true,
+                    animateRotate: true
+                }
+            }
+        });
+
+        // Word Cloud
+        var wordCloudData = [
+            {% for keyword, count in keywords %}
+                {text: "{{ keyword }}", size: {{ count * 10 }} },
+            {% endfor %}
+        ];
+
+        var wordCloudWidth = 400;
+        var wordCloudHeight = 300;
+
+        var color = d3.scaleOrdinal(d3.schemeCategory10);
+
+        var svg = d3.select("#wordCloud").append("svg")
+            .attr("width", wordCloudWidth)
+            .attr("height", wordCloudHeight)
+            .append("g")
+            .attr("transform", "translate(" + wordCloudWidth / 2 + "," + wordCloudHeight / 2 + ")");
+
+        var layout = d3.layout.cloud()
+            .size([wordCloudWidth, wordCloudHeight])
+            .words(wordCloudData)
+            .padding(5)
+            .rotate(function() { return ~~(Math.random() * 2) * 90; })
+            .font("Impact")
+            .fontSize(function(d) { return d.size; })
+            .on("end", draw);
+
+        layout.start();
+
+        function draw(words) {
+            svg.selectAll("text")
+                .data(words)
+                .enter().append("text")
+                .style("font-size", function(d) { return d.size + "px"; })
+                .style("font-family", "Impact")
+                .style("fill", function(d, i) { return color(i); })
+                .attr("text-anchor", "middle")
+                .attr("transform", function(d) {
+                    return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+                })
+                .text(function(d) { return d.text; });
+        }
+    });
+</script>
+{% endif %}
+{% endblock %}

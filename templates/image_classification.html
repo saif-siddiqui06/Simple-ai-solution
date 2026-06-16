@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Image Classification</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file"><br><br>
+        <input type="submit" value="Classify Image">
+    </form>
+
+    {% if predictions %}
+        <h3>Image:</h3>
+        <img src="{{ image }}" alt="Uploaded Image" style="max-width: 300px;">
+        <h3>Predictions:</h3>
+        <ul>
+            {% for prediction in predictions %}
+                <li>{{ prediction[1] }} - {{ prediction[2] }} (Confidence: {{ prediction[2]|round(2) }})</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

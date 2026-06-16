@@ -1,0 +1,174 @@
+<!-- templates/index.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}ML Projects Website{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Welcome to AI & ML World</h1>
+    <p class="lead">Explore various machine learning and AI projects.</p>
+    <hr class="my-4">
+    <p>Choose a project from the list below:</p>
+    <div class="row">
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:#ffde34;" class="fas fa-smile-wink fa-3x mb-3"></i>
+                    <h4 class="card-title">Sentiment Analysis</h4>
+                    <p class="card-text">Analyze sentiment in text using Natural Language Processing (NLP).</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('sentiment_analysis') }}" class="btn btn-primary">Go to Sentiment Analysis</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:blue;" class="fas fa-user fa-3x mb-3"></i>
+                    <h4 class="card-title">Named Entity Recognition (NER)</h4>
+                    <p class="card-text">Extract named entities from text for information extraction.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('ner') }}" class="btn btn-primary">Go to NER</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-file-alt fa-3x mb-3"></i>
+                    <h4 class="card-title">Text Summarization</h4>
+                    <p class="card-text">Summarize large amounts of text into key points or sentences.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('text_summarization') }}" class="btn btn-primary">Go to Text Summarization</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:red;"  class="fas fa-question-circle fa-3x mb-3"></i>
+                    <h4 class="card-title">Question Answering</h4>
+                    <p class="card-text">Ask questions about a given context.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('qa') }}" class="btn btn-primary">Go to Question Answering</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:blue;" class="fas fa-cube fa-3x mb-3"></i>
+                    <h4 class="card-title">Topic Modeling</h4>
+                    <p class="card-text">Extract topics from text using topic modeling techniques.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('topic_modeling') }}" class="btn btn-primary">Go to Topic Modeling</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:blue;" class="fas fa-language fa-3x mb-3"></i>
+                    <h4 class="card-title">Text Translation</h4>
+                    <p class="card-text">Translate text into different languages.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('text_translation') }}" class="btn btn-primary">Go to Text Translation</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i style="color:blue;" class="fas fa-microphone fa-3x mb-3"></i>
+                    <h4 class="card-title">Speech Recognition</h4>
+                    <p class="card-text">Transcribe speech to text.</p>
+                </div>
+                <div class="card-footer">
+                    <a href="{{ url_for('speech_recognition') }}" class="btn btn-primary">Go to Speech Recognition</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-spinner fa-spin fa-3x mb-3"></i>
+                    <h4 class="card-title">Coming Soon</h4>
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-primary">Go to Speech Recognition</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card h-100">
+                <div class="card-body">
+                    <i class="fas fa-spinner fa-spin fa-3x mb-3"></i>
+                    <h4 class="card-title">Coming Soon</h4>
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-footer">
+                    <a href="" class="btn btn-primary">Go to Speech Recognition</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Site footer -->
+<footer class="site-footer">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-6">
+          <h6>About</h6>
+          <p class="text-justify">The "AI and ML World Web" project is an innovative web-based platform designed to democratize access to advanced artificial intelligence (AI) and machine learning (ML) technologies. In today's digital era, AI and ML are revolutionizing industries by enabling automation, data-driven decision-making, and personalized user experiences. However, the adoption and implementation of these technologies are often hindered by barriers such as high computational requirements, complex algorithms, and the need for specialized expertise.</p>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Categories</h6>
+          <ul class="footer-links">
+            <li><a href="">Sentiment</a></li>
+            <li><a href="">NER</a></li>
+            <li><a href="">Text Summarize</a></li>
+            <li><a href="">Question Answering</a></li>
+            <li><a href="">Topic Modeling</a></li>
+            <li><a href="">Text Translation</a></li>
+          </ul>
+        </div>
+
+        <div class="col-xs-6 col-md-3">
+          <h6>Quick Links</h6>
+          <ul class="footer-links">
+            <li><a href="">About Us</a></li>
+            <li><a href="">Contact Us</a></li>
+            <li><a href="">Contribute</a></li>
+            <li><a href="">Privacy Policy</a></li>
+            <li><a href="">Sitemap</a></li>
+          </ul>
+        </div>
+      </div>
+      <hr>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-sm-6 col-xs-12">
+          <p class="copyright-text">Copyright &copy; 2017 All Rights Reserved by 
+       <a href="#">AI & ML World Web</a>.
+          </p>
+        </div>
+
+        <div class="col-md-4 col-sm-6 col-xs-12">
+        </div>
+      </div>
+    </div>
+</footer>
+{% endblock %}

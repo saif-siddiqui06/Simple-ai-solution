@@ -1,0 +1,25 @@
+<!-- templates/text_generation.html -->
+
+{% extends 'base.html' %}
+
+{% block title %}Text Generation - ML Projects Website{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-4">Text Generation</h2>
+    <form method="POST">
+        <div class="form-group">
+            <label for="prompt">Prompt:</label>
+            <textarea class="form-control" id="prompt" name="prompt" rows="4" required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Generate Text</button>
+    </form>
+
+    {% if generated_text %}
+    <div class="mt-4">
+        <h3>Generated Text:</h3>
+        <p>{{ generated_text }}</p>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Text Summarization - ML Projects{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Text Summarization</h1>
+    <p class="lead">Enter text to get a summarized version along with keywords.</p>
+    <hr class="my-4">
+    <form method="post">
+        <div class="form-group">
+            <label for="text">Text:</label>
+            <textarea class="form-control" id="text" name="text" rows="5" placeholder="Enter text for summarization..." required></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Summarize</button>
+    </form>
+
+    {% if text %}
+    <div class="mt-4">
+        <h4>Your Text:</h4>
+        <p class="p-3 bg-light rounded">{{ text }}</p>
+        <h4>Summary:</h4>
+        <p class="p-3 bg-light rounded">{{ summary }}</p>
+        <h4>Keywords:</h4>
+        <ul class="list-group">
+            {% for keyword, count in keywords %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ keyword }}
+                    <span class="badge badge-primary badge-pill">{{ count }}</span>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

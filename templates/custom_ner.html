@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h1>Custom Named Entity Recognition (NER)</h1>
+    <form method="post">
+        <textarea name="text" rows="5" cols="50" placeholder="Enter text for custom NER..."></textarea><br><br>
+        <input type="submit" value="Analyze">
+    </form>
+
+    {% if text %}
+        <h3>Your Text:</h3>
+        <p>{{ text }}</p>
+        <h3>Custom Entities Found:</h3>
+        <ul>
+            {% for entity in entities %}
+                <li>{{ entity.0 }} - {{ entity.1 }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endblock %}

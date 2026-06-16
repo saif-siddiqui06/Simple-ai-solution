@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Named Entity Recognition (NER)</h1>
+    <p class="lead">Identify named entities in your text</p>
+    <hr class="my-4">
+    <div class="container mt-5">
+        <div class="card shadow-sm">
+            <div class="card-body">
+                <h2 class="card-title text-center mb-4">NER Analysis</h2>
+                <form method="post">
+                    <div class="form-group">
+                        <label for="text">Enter text:</label>
+                        <textarea class="form-control" name="text" rows="5" placeholder="Enter text for NER..." required>{{ text }}</textarea>
+                    </div>
+                    <div class="form-group text-center">
+                        <button type="submit" class="btn btn-primary">Analyze</button>
+                    </div>
+                </form>
+
+                {% if text %}
+                <hr>
+                <div class="mt-4">
+                    <h3 class="mb-3">Your Text:</h3>
+                    <p>{{ text }}</p>
+                    <h3 class="mb-3">Named Entities:</h3>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="named-entities-grid">
+                                {% for entity in entities %}
+                                <div class="card named-entity">
+                                    <div class="card-body">
+                                        <h5 class="card-title">{{ entity.0 }}</h5>
+                                        <p class="card-text">{{ entity.1 }}</p>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

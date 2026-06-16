@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Topic Modeling - ML Projects{% endblock %}
+
+{% block content %}
+<div class="jumbotron">
+    <h1 class="display-4">Topic Modeling</h1>
+    <p class="lead">Discover topics from your text</p>
+    <hr class="my-4">
+    <form method="post">
+        <div class="form-group">
+            <label for="text">Enter text:</label>
+            <textarea class="form-control" id="text" name="text" rows="5" required>{{ text }}</textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Analyze</button>
+    </form>
+
+    {% if topics %}
+    <div class="mt-4">
+        <h4>Topics:</h4>
+        <p class="p-3 bg-light rounded"><strong>Text:</strong> {{ text }}</p>
+        <ul class="list-group">
+            {% for topic in topics %}
+            <li class="list-group-item">{{ topic }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

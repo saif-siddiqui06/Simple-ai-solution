@@ -1,0 +1,11 @@
+Flask==3.0.3
+vaderSentiment==3.3.2
+nltk==3.8.1
+spacy==3.7.5
+gensim==4.3.2
+deep-translator==1.11.4
+SpeechRecognition==3.10.4
+gunicorn==22.0.0
+numpy<2.0
+scipy==1.12.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl

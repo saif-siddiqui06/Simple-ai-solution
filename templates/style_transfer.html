@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Style Transfer</title>
+</head>
+<body>
+    <h1>Style Transfer</h1>
+    <form method="post" enctype="multipart/form-data">
+        <h2>Upload Content Image:</h2>
+        <input type="file" name="content_file"><br><br>
+        <h2>Upload Style Image:</h2>
+        <input type="file" name="style_file"><br><br>
+        <input type="submit" value="Apply Style">
+    </form>
+    {% if content_image and style_image and stylized_image %}
+        <h2>Content Image:</h2>
+        <img src="{{ url_for('static', filename=content_image) }}" style="max-width: 400px;">
+        <h2>Style Image:</h2>
+        <img src="{{ url_for('static', filename=style_image) }}" style="max-width: 400px;">
+        <h2>Stylized Image:</h2>
+        <img src="{{ url_for('static', filename=stylized_image) }}" style="max-width: 400px;">
+    {% endif %}
+</body>
+</html>
