@@ -141,6 +141,11 @@ def answer_question(question, context):
 def index():
     return render_template('index.html')
 
+
+@app.route('/health')
+def health():
+    return {'status': 'ok'}
+
 @app.route('/sentiment-analysis', methods=['GET', 'POST'])
 def sentiment_analysis():
     if request.method == 'POST':
