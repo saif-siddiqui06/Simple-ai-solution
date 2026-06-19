@@ -4,7 +4,7 @@ Simple AI Solution is a Flask web application that brings several practical
 natural-language processing tools into one browser-based interface. Users can
 enter text or upload audio and receive results without writing Python code.
 
-[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/saif-siddiqui06/Simple-ai-solution)
+Open Simple AI Solution](https://simple-ai-solution.onrender.com/)
 
 ## Features
 
